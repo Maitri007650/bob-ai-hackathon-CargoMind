@@ -94,3 +94,9 @@ logs/
 .terraform/
 *.tfstate
 *.tfstate.backup
+
+src/backend/node_modules/
+src/backend/data/*.db
+
+src/backend/node_modules/
+src/backend/data/*.db
