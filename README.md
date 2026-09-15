@@ -1,33 +1,36 @@
-# ShipTriage
+# 🚀 ShipTriage
 
-ShipTriage is a logistics disruption decision-support application that helps logistics operations managers turn a disruption into a structured response.
 
 ---
 
-## Team
+## 👥 Team
 
-| Field | Value |
-|---|---|
+| **Field** | **Value** |
+| --------- | --------- |
 | **Team Name** | CargoMind |
 | **Track** | AI |
-| **Team Lead** | Khushi |
-| **Members** | Maitri, Khushi, Rujuta, Omi |
+| **Team Lead** | Khushi  |
+| **Members** | Maitri , Khushi , Rujuta, Omi |
 
 ---
 
-## Problem Statement
+## 🎯 Problem Statement
+
+> In 2–3 sentences: What problem does your project solve? Who experiences this problem?
 
 Logistics disruptions such as port strikes can affect multiple shipments at the same time, making it difficult for operations managers to quickly identify which shipments need attention first. ShipTriage helps managers identify affected shipments, prioritize them based on business and SLA factors, and evaluate rerouting options before making a decision.
 
 ---
 
-## Solution
+## 💡 Solution
+
+> In 2–3 sentences: What did you build? How does it solve the problem above?
 
 ShipTriage provides a structured workflow from disruption analysis to final decision logging. It identifies affected shipments, calculates an explainable priority score, presents simulated rerouting options with cost, delay, SLA status and feasibility, and allows the manager to approve or override the recommended option.
 
 ---
 
-## Key Features
+## ✨ Key Features
 
 - **Disruption Impact Analysis:** Identifies shipments affected by a selected disruption.
 - **Explainable Shipment Prioritization:** Ranks affected shipments using SLA urgency, customer importance, cargo criticality and shipment value.
@@ -37,10 +40,10 @@ ShipTriage provides a structured workflow from disruption analysis to final deci
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-| Category | Technologies |
-|---|---|
+| **Category** | **Technologies** |
+| ------------ | ---------------- |
 | **Languages** | JavaScript |
 | **Frameworks** | React, Vite, Node.js, Express |
 | **IBM Technologies** | IBM Bob |
@@ -49,38 +52,7 @@ ShipTriage provides a structured workflow from disruption analysis to final deci
 
 ---
 
-## IBM Bob Usage
-
-IBM Bob was used as an AI pair-programming and code-review partner across three key phases of development.
-
-### 1. Codebase Analysis and Risk Identification
-
-Bob performed a full review of the ShipTriage codebase before the frontend-backend integration was built. The review covered the backend API structure and route contracts, the SQLite schema and data handling, the `decisionEngine.js` prioritization logic, and the frontend state and API layer. Bob produced a prioritized list of 14 findings including:
-
-- The `customerImportance` and `cargoCriticality` fields being used raw (0–100) in a weighted scoring formula designed for normalized inputs, causing priority scores to exceed intended tier boundaries.
-- The `api.js` file containing a hardcoded LAN IP address (`10.234.105.87`) that would fail on any machine other than the original developer's laptop.
-- The `recommendationScore` field in the rerouting reduce logic being nullable, making the best-option selection unreliable.
-- All four `api.js` functions being fully written but never imported or called anywhere in `App.jsx`, leaving the entire backend disconnected from the UI.
-
-This phase produced a prioritized report covering critical bugs, logic errors, code quality issues, and demo risks before a single line was changed.
-
-### 2. Integration Planning and Implementation
-
-Bob planned the minimal set of changes required to wire the frontend to the existing backend without rewriting the application or changing API contracts. The plan was reviewed and approved by the team before any code was applied. Bob then implemented:
-
-- A Vite proxy configuration to replace the hardcoded IP with a relative `/api` path, making the app portable across machines.
-- Converting all three event handlers (`analyzeImpact`, `selectShipment`, `makeDecision`) from synchronous state setters to async functions calling the correct API endpoints.
-- Field mapping between backend response shapes (`shipmentId`, `priorityTier`, `optionId`) and the existing JSX field names (`id`, `priority`, `name`) so no JSX structure needed to change.
-- Wiring the decision log to display persisted data from `GET /api/decisions` rather than local component state.
-- Loading and error states to give visible feedback during API calls.
-
-### 3. Submission Quality Review
-
-Bob reviewed the completed integration from the perspective of hackathon judges, evaluating the project against the five named evaluation criteria. This produced a structured list of critical gaps, high-value improvements, and items to skip — including identifying that three of the five docs files were still unfilled templates and that the IBM Bob usage itself was undocumented.
-
----
-
-## Repository Structure
+## 📁 Repository Structure
 
 ```text
 ├── src/
@@ -100,3 +72,53 @@ Bob reviewed the completed integration from the perspective of hackathon judges,
 ├── submission.yaml
 ├── CONTRIBUTING.md
 └── .gitignore
+```
+
+---
+
+## ⚡ How to Run
+
+> **Copy these exact steps from your** [**`docs/setup-guide.md`**](https://github.com/Maitri007650/bob-ai-hackathon-CargoMind/blob/main/docs/setup-guide.md)
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/Maitri007650/bob-ai-hackathon-CargoMind.git
+cd bob-ai-hackathon-CargoMind
+
+# 2. Install dependencies
+cd src/frontend
+npm install
+
+# 3. Configure environment
+No environment configuration is required.
+
+# 4. Run the project
+npm run dev
+```
+
+---
+
+## 🖥️ Demo
+
+| **Artifact** | **Link** |
+| ------------ | -------- |
+| 📹 Demo Video | [See demo/demo-video-link.txt](https://github.com/Maitri007650/bob-ai-hackathon-CargoMind/blob/main/demo/demo-video-link.txt) |
+| 🌐 Live Demo | [See demo/live-demo-url.txt](https://github.com/Maitri007650/bob-ai-hackathon-CargoMind/blob/main/demo/live-demo-url.txt) |
+| 🖼️ Screenshots | See demo/screenshots/ |
+| 📊 Presentation | See presentation/ |
+
+---
+
+## ⚠️ Known Limitations
+
+
+
+- The project uses simulated shipment and rerouting data.
+- The priority and recommendation logic is rule-based.
+- Live logistics integrations and advanced route optimization are not included.
+
+---
+
+## 🏅 What We're Most Proud Of
+
+ShipTriage provides a complete and easy-to-understand workflow for handling supply chain disruptions. The system connects disruption analysis, shipment prioritization, rerouting options, recommendation, manager approval or override, and decision logging in one application.

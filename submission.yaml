@@ -1,3 +1,13 @@
+# =============================================================================
+# HACKATHON SUBMISSION METADATA
+# =============================================================================
+# Instructions:
+#   - Fill in ALL required fields (marked with # REQUIRED)
+#   - Optional fields can be left as empty strings ""
+#   - Do NOT rename this file — the evaluation pipeline reads it by name
+#   - Use double quotes around all string values
+# =============================================================================
+
 team:
   name: "CargoMind"
   track: "AI"
@@ -5,8 +15,10 @@ team:
     name: "Khushi Patel"
     email: "25ce080@charusat.edu.in"
   members:
-    - name: "Maitri"
+    - name: "Maitri Patel"
       email: "25ce081@charusat.edu.in"
+    - name: "Khushi Patel"
+      email: ""
     - name: "Rujuta"
       email: "25ce126@charusat.edu.in"
     - name: "Omi"
@@ -16,76 +28,47 @@ submission:
   title: "ShipTriage"
 
   problem_statement: >
-    Supply chain disruptions such as weather events, port strikes, and other
-    operational disruptions can affect many active shipments at the same time,
-    making it difficult for logistics operations managers to quickly identify
-    affected shipments, assess their priority, and choose suitable alternative
-    routes.
+    Logistics operations managers need to quickly identify shipments affected
+    by supply chain disruptions and determine which shipments require the most
+    urgent attention. Different shipments have different SLA urgency, customer
+    importance, cargo criticality, value, and rerouting constraints.
 
   solution_summary: >
-    ShipTriage is a logistics disruption decision-support application that helps
-    operations managers analyze affected shipments, rank them by criticality,
-    review rerouting options, and approve or override a recommended route while
-    maintaining a decision log.
+    ShipTriage is a supply chain disruption decision-support application that
+    identifies affected shipments, ranks their priority, compares rerouting
+    options, and provides a recommendation for manager approval or override.
+    The system records the final decision for traceability.
 
   key_features:
-    - "Disruption input and affected shipment analysis"
-    - "Shipment priority and criticality ranking"
-    - "Shipment details with alternative rerouting options"
-    - "Recommended rerouting option for manager review"
-    - "Approve or override decisions with decision logging"
+    - "Disruption impact analysis and identification of affected shipments"
+    - "Rule-based shipment priority and criticality ranking"
+    - "Rerouting option comparison based on delay, cost, SLA, and feasibility"
+    - "Manager approval or override of rerouting recommendations"
+    - "Decision logging for traceability"
 
   tech_stack:
-    languages:
-      - "JavaScript"
-    frameworks:
-      - "React"
-      - "Vite"
-      - "Node.js"
-      - "Express"
-    ibm_technologies:
-      - "IBM Bob"
-    databases:
-      - "SQLite"
-    other:
-      - "Git"
-      - "GitHub"
+    languages: ["JavaScript"]
+    frameworks: ["React", "Vite", "Node.js", "Express"]
+    ibm_technologies: ["IBM Bob"]
+    databases: ["SQLite"]
+    other: ["GitHub Actions"]
 
   what_we_are_most_proud_of: >
-    We are most proud of the end-to-end disruption decision workflow in ShipTriage,
-    which connects the frontend with the backend to analyze disruptions, present
-    shipment priorities and rerouting options, capture the manager's decision,
-    and maintain a decision log.
+    We are most proud of completing the end-to-end ShipTriage workflow from
+    disruption input through impact analysis, shipment prioritization,
+    rerouting recommendation, manager approval or override, and decision
+    logging in one working application.
 
   known_limitations: >
-    The current MVP focuses on the core disruption-to-decision workflow. Advanced
-    capabilities such as live external disruption feeds, real-time fleet
-    optimisation, cold-chain IoT monitoring, and production deployment are not
-    fully implemented in the current version.
+    The MVP uses simulated shipment and disruption data and rule-based
+    decision logic. It does not include live carrier integrations, GPS-based
+    tracking, machine learning, advanced route optimization, fleet-level
+    optimization, or IoT and cold-chain monitoring.
 
-  ibm_bob_usage: >
-    IBM Bob was used as a development partner across three phases. In phase one,
-    Bob reviewed the full codebase and produced a prioritized list of 14 findings
-    covering bugs, logic errors, and demo risks — including a disconnected frontend
-    (api.js functions written but never called in App.jsx), a hardcoded LAN IP that
-    would break the demo on any other machine, and an un-normalized scoring formula
-    in decisionEngine.js. In phase two, Bob planned the minimal frontend-backend
-    integration changes, which the team reviewed and approved before implementation.
-    Bob then applied the changes: Vite proxy configuration, async API wiring for all
-    three user actions, backend-to-frontend field mapping, and persistent decision
-    log display. In phase three, Bob evaluated the completed submission against the
-    hackathon evaluation criteria and identified documentation gaps, including that
-    several docs files remained as unfilled templates.
-
-  ibm_bob_tasks:
-    - "Full codebase review — 14 prioritized findings covering bugs, logic errors, security risks, and demo risks"
-    - "Identified disconnected frontend: api.js functions written but never imported in App.jsx"
-    - "Identified hardcoded LAN IP in api.js that would break the demo on any other machine"
-    - "Identified un-normalized scoring inputs in decisionEngine.js causing inflated priority scores"
-    - "Planned the minimal integration change set before any code was written"
-    - "Implemented Vite proxy, async API wiring, field mapping, and decision log persistence"
-    - "Reviewed completed submission against hackathon evaluation criteria"
-
+# =============================================================================
+# ARTIFACT LOCATIONS
+# These paths are relative to the repo root. Only change if you moved files.
+# =============================================================================
 artifacts:
   source_code: "src/"
   setup_guide: "docs/setup-guide.md"
