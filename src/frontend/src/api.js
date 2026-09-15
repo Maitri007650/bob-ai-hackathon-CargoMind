@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000"
+const API_URL = "http://10.234.105.87:5000"
 
 export async function analyzeDisruption(data) {
   const response = await fetch(`${API_URL}/api/disruption/analyze`, {
