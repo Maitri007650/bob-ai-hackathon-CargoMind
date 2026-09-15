@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000"
+const API_URL = "http://localhost:5000"
 
 export async function analyzeDisruption(data) {
   const response = await fetch(`${API_URL}/api/disruption/analyze`, {
@@ -16,21 +16,9 @@ export async function analyzeDisruption(data) {
   return response.json()
 }
 
-export async function getShipments(disruptionId) {
-  const response = await fetch(
-    `${API_URL}/api/disruptions/${disruptionId}/shipments/tiered`
-  )
-
-  if (!response.ok) {
-    throw new Error("Failed to get shipments")
-  }
-
-  return response.json()
-}
-
 export async function getReroutingOptions(shipmentId) {
   const response = await fetch(
-    `${API_URL}/api/shipments/${shipmentId}/rerouting-options`
+    `${API_URL}/api/rerouting/${shipmentId}`
   )
 
   if (!response.ok) {
@@ -40,8 +28,8 @@ export async function getReroutingOptions(shipmentId) {
   return response.json()
 }
 
-export async function approveDecision(data) {
-  const response = await fetch(`${API_URL}/api/decisions/approve`, {
+export async function saveDecision(data) {
+  const response = await fetch(`${API_URL}/api/decisions`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -56,11 +44,11 @@ export async function approveDecision(data) {
   return response.json()
 }
 
-export async function getDecisionLog() {
-  const response = await fetch(`${API_URL}/api/decisions/log`)
+export async function getDecisionHistory() {
+  const response = await fetch(`${API_URL}/api/decisions`)
 
   if (!response.ok) {
-    throw new Error("Failed to get decision log")
+    throw new Error("Failed to get decision history")
   }
 
   return response.json()
