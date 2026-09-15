@@ -1,0 +1,164 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #1f2937;
+}
+
+button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  background: #1f4e79;
+  color: white;
+  cursor: pointer;
+  margin: 6px 6px 6px 0;
+}
+
+button:hover {
+  background: #163a5c;
+}
+
+h1 {
+  margin-bottom: 5px;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #d9dee5;
+  margin: 25px 0;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.header {
+  background: #1f4e79;
+  color: white;
+  padding: 24px 40px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.header p {
+  margin: 6px 0 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px;
+}
+
+.section {
+  background: white;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.section-title {
+  margin-bottom: 20px;
+}
+
+.disruption-box {
+  background: #fff7ed;
+  border-left: 5px solid #f97316;
+  padding: 18px;
+  border-radius: 6px;
+}
+
+.shipment-list {
+  display: grid;
+  gap: 14px;
+}
+
+.shipment {
+  border: 1px solid #e1e5ea;
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.shipment strong {
+  font-size: 18px;
+}
+
+.priority {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.critical {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.high {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+.normal {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.option {
+  border: 1px solid #d9dee5;
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.recommended {
+  border: 2px solid #1f4e79;
+}
+
+.recommendation {
+  background: #eff6ff;
+  border-left: 5px solid #1f4e79;
+  padding: 18px;
+  border-radius: 6px;
+}
+
+.decision {
+  background: #ecfdf5;
+  border-left: 5px solid #16a34a;
+  padding: 18px;
+  border-radius: 6px;
+}
+
+@media (max-width: 800px) {
+  .options {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  .header {
+    padding: 20px;
+  }
+}
