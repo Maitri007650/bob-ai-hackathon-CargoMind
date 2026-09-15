@@ -10,8 +10,8 @@ ShipTriage is a logistics disruption decision-support application that helps log
 |---|---|
 | **Team Name** | CargoMind |
 | **Track** | AI |
-| **Team Lead** | Maitri Patel |
-| **Members** | Maitri Patel, Khushi, Rujuta, Omi |
+| **Team Lead** | Khushi |
+| **Members** | Maitri, Khushi, Rujuta, Omi |
 
 ---
 
