@@ -47,7 +47,36 @@ ShipTriage provides a structured workflow from disruption analysis to final deci
 | **Databases** | SQLite |
 | **Other** | Git, GitHub, GitHub Actions |
 
-IBM Bob was used as an AI-powered development partner during the development workflow.
+---
+
+## IBM Bob Usage
+
+IBM Bob was used as an AI pair-programming and code-review partner across three key phases of development.
+
+### 1. Codebase Analysis and Risk Identification
+
+Bob performed a full review of the ShipTriage codebase before the frontend-backend integration was built. The review covered the backend API structure and route contracts, the SQLite schema and data handling, the `decisionEngine.js` prioritization logic, and the frontend state and API layer. Bob produced a prioritized list of 14 findings including:
+
+- The `customerImportance` and `cargoCriticality` fields being used raw (0–100) in a weighted scoring formula designed for normalized inputs, causing priority scores to exceed intended tier boundaries.
+- The `api.js` file containing a hardcoded LAN IP address (`10.234.105.87`) that would fail on any machine other than the original developer's laptop.
+- The `recommendationScore` field in the rerouting reduce logic being nullable, making the best-option selection unreliable.
+- All four `api.js` functions being fully written but never imported or called anywhere in `App.jsx`, leaving the entire backend disconnected from the UI.
+
+This phase produced a prioritized report covering critical bugs, logic errors, code quality issues, and demo risks before a single line was changed.
+
+### 2. Integration Planning and Implementation
+
+Bob planned the minimal set of changes required to wire the frontend to the existing backend without rewriting the application or changing API contracts. The plan was reviewed and approved by the team before any code was applied. Bob then implemented:
+
+- A Vite proxy configuration to replace the hardcoded IP with a relative `/api` path, making the app portable across machines.
+- Converting all three event handlers (`analyzeImpact`, `selectShipment`, `makeDecision`) from synchronous state setters to async functions calling the correct API endpoints.
+- Field mapping between backend response shapes (`shipmentId`, `priorityTier`, `optionId`) and the existing JSX field names (`id`, `priority`, `name`) so no JSX structure needed to change.
+- Wiring the decision log to display persisted data from `GET /api/decisions` rather than local component state.
+- Loading and error states to give visible feedback during API calls.
+
+### 3. Submission Quality Review
+
+Bob reviewed the completed integration from the perspective of hackathon judges, evaluating the project against the five named evaluation criteria. This produced a structured list of critical gaps, high-value improvements, and items to skip — including identifying that three of the five docs files were still unfilled templates and that the IBM Bob usage itself was undocumented.
 
 ---
 

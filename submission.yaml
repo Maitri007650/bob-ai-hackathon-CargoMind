@@ -63,6 +63,29 @@ submission:
     optimisation, cold-chain IoT monitoring, and production deployment are not
     fully implemented in the current version.
 
+  ibm_bob_usage: >
+    IBM Bob was used as a development partner across three phases. In phase one,
+    Bob reviewed the full codebase and produced a prioritized list of 14 findings
+    covering bugs, logic errors, and demo risks — including a disconnected frontend
+    (api.js functions written but never called in App.jsx), a hardcoded LAN IP that
+    would break the demo on any other machine, and an un-normalized scoring formula
+    in decisionEngine.js. In phase two, Bob planned the minimal frontend-backend
+    integration changes, which the team reviewed and approved before implementation.
+    Bob then applied the changes: Vite proxy configuration, async API wiring for all
+    three user actions, backend-to-frontend field mapping, and persistent decision
+    log display. In phase three, Bob evaluated the completed submission against the
+    hackathon evaluation criteria and identified documentation gaps, including that
+    several docs files remained as unfilled templates.
+
+  ibm_bob_tasks:
+    - "Full codebase review — 14 prioritized findings covering bugs, logic errors, security risks, and demo risks"
+    - "Identified disconnected frontend: api.js functions written but never imported in App.jsx"
+    - "Identified hardcoded LAN IP in api.js that would break the demo on any other machine"
+    - "Identified un-normalized scoring inputs in decisionEngine.js causing inflated priority scores"
+    - "Planned the minimal integration change set before any code was written"
+    - "Implemented Vite proxy, async API wiring, field mapping, and decision log persistence"
+    - "Reviewed completed submission against hackathon evaluation criteria"
+
 artifacts:
   source_code: "src/"
   setup_guide: "docs/setup-guide.md"
