@@ -29,7 +29,7 @@ app.get("/api/health", (req, res) => {
     });
 });
 
-const server = app.listen(PORT, () => {
+const server = app.listen(PORT, "0.0.0.0", () => {
     console.log(`ShipTriage backend running on http://localhost:${PORT}`);
 });
 
