@@ -23,41 +23,77 @@ router.post("/", (req, res) => {
         });
     }
 
-    const timestamp = new Date().toISOString();
+    db.get(
+  "SELECT shipmentId FROM shipments WHERE shipmentId = ?",
+  [shipmentId],
+  (err, shipment) => {
+    if (err) {
+      return res.status(500).json({
+        error: "Database error"
+      });
+    }
 
-    db.run(
-        `
-        INSERT INTO decisions
-        (shipmentId, selectedOption, action, reason, timestamp)
-        VALUES (?, ?, ?, ?, ?)
-        `,
-        [
+    if (!shipment) {
+      return res.status(404).json({
+        error: "Shipment not found"
+      });
+    }
+
+    db.get(
+      "SELECT optionId FROM rerouting_options WHERE optionId = ? AND shipmentId = ?",
+      [selectedOption, shipmentId],
+      (err, option) => {
+        if (err) {
+          return res.status(500).json({
+            error: "Database error"
+          });
+        }
+
+        if (!option) {
+          return res.status(404).json({
+            error: "Rerouting option not found for this shipment"
+          });
+        }
+
+        const timestamp = new Date().toISOString();
+
+        db.run(
+          `
+          INSERT INTO decisions
+          (shipmentId, selectedOption, action, reason, timestamp)
+          VALUES (?, ?, ?, ?, ?)
+          `,
+          [
             shipmentId,
             selectedOption,
             action,
             reason || "",
             timestamp
-        ],
-        function (err) {
+          ],
+          function (err) {
             if (err) {
-                return res.status(500).json({
-                    error: "Database error"
-                });
+              return res.status(500).json({
+                error: "Database error"
+              });
             }
 
             res.status(201).json({
-                message: "Decision logged successfully",
-                decision: {
-                    id: this.lastID,
-                    shipmentId,
-                    selectedOption,
-                    action,
-                    reason: reason || "",
-                    timestamp
-                }
+              message: "Decision logged successfully",
+              decision: {
+                id: this.lastID,
+                shipmentId,
+                selectedOption,
+                action,
+                reason: reason || "",
+                timestamp
+              }
             });
-        }
+          }
+        );
+      }
     );
+  }
+);
 });
 
 router.get("/", (req, res) => {
